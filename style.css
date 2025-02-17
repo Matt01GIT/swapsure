@@ -1,0 +1,188 @@
+body {
+    margin: 0;
+    font-family: 'Roboto Flex', sans-serif;
+  }
+  
+  .navbar {
+    background-color: black; 
+    overflow: hidden;
+  }
+  .navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+
+  .navbar li {
+    flex: 1;
+  }
+
+  .navbar a {
+    display: block;
+    color: #f2f2f2;       
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none; /* Remove underlines */
+    transition: background-color 0.3s ease;
+  }
+  
+  .navbar a.active {
+    background-color: green; 
+    color: black;
+  }
+  
+  .navbar a:hover {
+    background-color: white;
+    color: black;
+    a.active{
+        background-color: black;
+    }
+  }
+  
+  .introSection {
+    text-align: left;
+    padding: 300px 500px;
+    background-color: black; 
+    color:white;
+  }
+  
+  .introSection h1 {
+    margin: 0;
+    font-size: 2.5em;
+    color:white
+  }
+  
+  body {
+    margin: 0;
+    font-family: 'Roboto Flex', sans-serif;
+}
+
+.introSection {
+    text-align: center;
+    padding: 100px 50px;
+    background-color: black;
+}
+
+.introSection h1 {
+    margin: 0;
+    font-size: 2.5em;
+    color: white;
+}
+
+/* New Section for the Item List */
+.itemsSection {
+    padding: 50px;
+    background-color: #f4f4f4;
+}
+
+.itemsSection h2 {
+    text-align: center;
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* Table Styles */
+#itemsTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#itemsTable th, #itemsTable td {
+    text-align: center;
+    padding: 15px;
+    border: 1px solid #ddd;
+}
+
+#itemsTable th {
+    background-color: #333;
+    color: white;
+}
+
+#itemsTable td {
+    background-color: #fff;
+}
+
+#itemsTable tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#itemsTable tr:hover {
+    background-color: #ddd;
+}
+.addItemSection {
+  padding: 30px;
+  background-color: #f4f4f4;
+  margin-top: 30px;
+}
+
+.addItemSection h2 {
+  font-size: 2em;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.addItemSection form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.addItemSection input {
+  width: 300px;
+  padding: 10px;
+  margin: 10px;
+  font-size: 1em;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.addItemSection button {
+  padding: 10px 20px;
+  font-size: 1.1em;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.addItemSection button:hover {
+  background-color: darkgreen;
+}
+
+.buyForm form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.buyForm {
+  padding: 30px;
+  background-color: #f4f4f4;
+}
+
+.buyForm button {
+  padding: 10px 20px;
+  font-size: 1.1em;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.buyForm button:hover {
+  background-color: darkgreen;
+}
+
+.buyForm input {
+  width: 300px;
+  padding: 10px;
+  margin: 10px;
+  font-size: 1em;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}

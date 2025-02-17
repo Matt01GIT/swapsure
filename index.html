@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SwapSure</title>
+        <link rel="stylesheet" href="style.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+        <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+
+    </head>
+    <body>
+        <div class="navbar">
+            <ul>
+                <li><a href="index.html" class="active"><b>SwapSure</b></a></li>
+                <li><a href="trade.html">Trade</a></li>
+                <li><a href="contact.asp">Contact</a></li>
+                <li><a href="about.asp">About</a></li>
+              </ul>
+        </div>
+        <div class="introSection">
+            <h1><b>The New Way To Trade.</b></h1>
+        </div>
+        
+        <!-- New Section for Item List -->
+        <section class="itemsSection">
+            <h2>Items for Trade</h2>
+            <table id="itemsTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Cost</th>
+                        <th>Change</th>
+                        <th>Ticker Symbol</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dynamic Rows will be inserted here -->
+                </tbody>
+            </table>
+        </section>
+        
+        <!-- Form to Add New Item -->
+        <section class="addItemSection">
+            <h2>Add a New Item</h2>
+            <form id="addItemForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+              
+                <label for="cost">Cost:</label>
+                <input type="number" id="cost" name="cost" required>
+              
+              
+                <button type="submit">Add Item</button>
+              </form>
+              
+        </section>
+        
+        <script>
+            // Fetch existing items
+            fetch("/api/items")
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.querySelector("#itemsTable tbody");
+                    tableBody.innerHTML = ""; // Clear any existing data
+                    data.forEach(item => {
+                        const row = document.createElement("tr");
+                        row.innerHTML = `
+                            <td>${item.name}</td>
+                            <td>$${item.cost}</td>
+                            <td>${item.percentage_change}%</td>
+                            <td>${item.ticker_symbol}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error("Error fetching items:", error));
+        
+            // Handle form submission to add new item
+            document.getElementById("addItemForm").addEventListener("submit", function(e) {
+                e.preventDefault();
+                function generateUniqueTicker() {
+                    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                    let ticker;
+                    let isUnique = false;
+                    ticker = "";
+                    for (let i = 0; i < 4; i++) { // Generate a 4-letter ticker
+                        ticker += characters.charAt(Math.floor(Math.random() * characters.length));
+                    }
+                    
+                    return ticker;
+                }
+                console.log(generateUniqueTicker());
+                const uniqueTicker = generateUniqueTicker();
+                const newItem = {
+                    name: document.getElementById("name").value,
+                    cost: parseFloat(document.getElementById("cost").value),
+                    percentage_change: 0,  // Set default value of percentage_change to 0
+                    ticker_symbol: uniqueTicker
+                };
+
+                console.log("Sending item to server:", newItem);  // Log the item being sent
+
+                fetch("/api/addItem", {
+                    method: "POST",
+                    headers: {
+                    "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(newItem)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Server response:", data);  // Log the server's response
+                    // Update the table with the new item or reset form
+                })
+                .catch(error => {
+                    console.error("Error sending item:", error);
+                });
+            });
+
+        </script>
+
+        
+        
+        
+        
+    </body>
+</html>

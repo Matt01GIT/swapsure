@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SwapSure</title>
+        <link rel="stylesheet" href="style.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+        <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script> 
+    </head>
+    <body>
+        <div class="navbar">
+            <ul>
+                <li><a href="index.html"><b>SwapSure</b></a></li>
+                <li><a href="trade.html" class="active">Trade</a></li>
+                <li><a href="contact.asp">Contact</a></li>
+                <li><a href="about.asp">About</a></li>
+              </ul>
+        </div>
+        <div class="introSection">
+            <h1><b>Trade Anything, Now</b></h1>
+        </div>
+        <form class="buyForm" id="buyForm">
+            <label for="cost">Cost:</label>
+            <input type="number" id="cost" name="cost" required>
+          
+            <label for="ticker_symbol">Ticker Symbol:</label>
+            <input type="text" id="ticker_symbol" name="ticker_symbol" required>
+          
+            <button type="submit">Buy Item</button>           
+        </form>
+        <script>
+            document.getElementById("buyForm").addEventListener("submit", function(e){
+                e.preventDefault();
+                const request = {
+                    ticker_symbol: document.getElementById("ticker_symbol").value,
+                    cost: parseFloat(document.getElementById("cost").value),
+                };
+
+                console.log("Confirming request of", request);
+                // Import the functions you need from the SDKs you need
+            })
+        </script>
+    </body>
+</html>
